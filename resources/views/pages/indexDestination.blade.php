@@ -4,9 +4,22 @@
 
 <style>
   .destination-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 60px 0;
+    background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80') center/cover no-repeat;
+    position: relative;
+    padding: 100px 0;
     margin-bottom: 40px;
+  }
+
+  .destination-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.658);
+  }
+
+  .destination-hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   .destination-hero h1 {
