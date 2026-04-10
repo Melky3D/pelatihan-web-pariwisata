@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
-        $destinations = Destination::all();
+        $keyword = $request->input('search');
+        if ($keyword) {
+            $destinations = Destination::where('name', 'like', "%$keyword%")->get();
+        } else {
+            $destinations = Destination::all();
+        }
         return view('pages.indexDestination', compact('destinations'));
     }
 

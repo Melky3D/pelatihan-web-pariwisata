@@ -184,6 +184,61 @@
   .empty-state p {
     color: #718096;
   }
+
+  .search-form {
+    position: relative;
+  }
+
+  .search-form input {
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 10px 20px;
+    padding-left: 45px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: 280px;
+  }
+
+  .search-form input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  }
+
+  .search-form input::placeholder {
+    color: #a0aec0;
+  }
+
+  .search-form .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: color 0.3s;
+  }
+
+  .search-form input:focus + .search-icon {
+    color: #667eea;
+  }
+
+  .search-form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  .search-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  }
 </style>
 
 <!-- Hero Section -->
@@ -199,13 +254,20 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="section-title mb-0">Semua Destinasi</h2>
-      <a href="/destination/create" class="btn-add">
+
+      <form action="/destination" method="GET" class="search-form d-flex align-items-center gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Cari destinasi..." value="{{ request('search') }}">
+        <i class="bi bi-search search-icon"></i>
+        <button type="submit" class="btn">Cari</button>
+      </form>
+
+      <a href="/destination/create" class="btn-add ms-3">
         <i class="bi bi-plus-circle"></i> Tambah Destinasi
       </a>
     </div>
 
     @if (session('success'))
-      <div class="alert-success">
+      <div id="alertSuccess" class="alert-success">
         <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
       </div>
     @endif
@@ -267,7 +329,7 @@
                 </div>
               </td>
             </tr>
-            @endforelse
+            @endforelse 
           </tbody>
         </table>
       </div>
@@ -275,4 +337,27 @@
   </div>
 </section>
 
+
 @endsection
+
+@push('scripts')
+<script>
+   class alert {
+    constructor(message) {
+      this.message = message;
+    }
+
+    show() {
+      alert(this.message);
+    }
+   }
+   let alertElement = document.getElementById('alertSuccess');
+   if (alertElement) {
+    setTimeout(() => {
+      alertElement.style.transition = 'opacity 0.5s ease';
+      alertElement.style.opacity = '0';
+      setTimeout(() => alertElement.remove(), 1000);
+    }, 3000);
+   }
+  </script>
+@endpush
