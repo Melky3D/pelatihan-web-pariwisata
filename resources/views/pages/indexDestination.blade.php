@@ -252,6 +252,54 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
   }
+
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .pagination-wrapper .pagination {
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .pagination-wrapper .page-item .page-link {
+    border: none;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+    background: transparent;
+    transition: all 0.25s ease;
+  }
+
+  .pagination-wrapper .page-item .page-link:hover {
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    transform: translateY(-1px);
+  }
+
+  .pagination-wrapper .page-item.active .page-link {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+  }
+
+  .pagination-wrapper .page-item.disabled .page-link {
+    color: #94a3b8;
+    background: transparent;
+  }
+
+  .pagination-wrapper .page-item.disabled .page-link:hover {
+    background: transparent;
+    color: #94a3b8;
+    transform: none;
+  }
 </style>
 
 <!-- Hero Section -->
@@ -346,6 +394,10 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="pagination-wrapper">
+      {{ $destinations->appends(['search' => request('search')])->links('pagination::bootstrap-5') }}
     </div>
   </div>
 </section>

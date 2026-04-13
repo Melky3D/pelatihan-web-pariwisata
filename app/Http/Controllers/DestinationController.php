@@ -10,9 +10,9 @@ class DestinationController extends Controller
     {
         $keyword = $request->input('search');
         if ($keyword) {
-            $destinations = Destination::where('name', 'like', "%$keyword%")->get();
+            $destinations = Destination::where('name', 'like', "%$keyword%")->paginate(5);
         } else {
-            $destinations = Destination::all();
+            $destinations = Destination::paginate(5);
         }
         return view('pages.indexDestination', compact('destinations'));
     }
