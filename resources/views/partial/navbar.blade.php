@@ -77,6 +77,10 @@
           <a href="/destination" class="nav-link text-white">Tabel Destination</a>
         </li>
 
+        <li class="nav-item">
+          <a href="/user" class="nav-link text-white">Tabel User</a>
+        </li>
+
       </ul>
 
       <!-- SEARCH -->
