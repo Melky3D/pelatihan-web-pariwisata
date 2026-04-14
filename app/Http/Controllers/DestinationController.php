@@ -14,18 +14,18 @@ class DestinationController extends Controller
         } else {
             $destinations = Destination::paginate(5);
         }
-        return view('pages.indexDestination', compact('destinations'));
+        return view('pages.destinations.indexDestination', compact('destinations'));
     }
 
     public function show($id)
     {
         $destinasi = Destination::find($id);
-        return view('pages.destinasi2', compact('destinasi'));
+        return view('pages.destinations.destinasi2', compact('destinasi'));
     }
 
     public function create()
     {
-        return view('pages.createDestination');
+        return view('pages.destinations.createDestination');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class DestinationController extends Controller
 
         Destination::create($request->all());
 
-        return redirect('destination')->with('success', 'Destination created successfully.');
+        return redirect()->route('destination.index')->with('success', 'Destination created successfully.');
     }
 
     public function delete($id)
@@ -41,9 +41,9 @@ class DestinationController extends Controller
         $destinasi = Destination::find($id);
         if ($destinasi) {
             $destinasi->delete();
-            return redirect('/destination')->with('success', 'Destination deleted successfully.');
+            return redirect()->route('destination.index')->with('success', 'Destination deleted successfully.');
         }else {
-            return redirect('/destination')->with('error', 'Destination not found.');
+            return redirect()->route('destination.index')->with('error', 'Destination not found.');
         }
 
     }
@@ -51,7 +51,7 @@ class DestinationController extends Controller
     public function edit($id)
     {
         $destinasi = Destination::find($id);
-        return view('pages.updateDestination', compact('destinasi'));
+        return view('pages.destinations.updateDestination', compact('destinasi'));
     }
 
     public function update(Request $request, $id)
@@ -59,9 +59,9 @@ class DestinationController extends Controller
         $destinasi = Destination::find($id);
         if ($destinasi) {
             $destinasi->update($request->all());
-            return redirect('/destination')->with('success', 'Destination updated successfully.');
+            return redirect()->route('destination.index')->with('success', 'Destination updated successfully.');
         } else {
-            return redirect('/destination')->with('error', 'Destination not found.');
+            return redirect()->route('destination.index')->with('error', 'Destination not found.');
         }
     }
 }

@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/halo', function () {
-    $name ="Melky";
+    $name = "Melky";
     $hobby = ["Coding", "Gaming", "Traveling"];
     return view('halo', compact('name', 'hobby'));
 });
@@ -42,19 +42,22 @@ Route::get('destinasi', function () {
     return view('pages.destinasi', compact('destinasi'));
 });
 
-Route::get('destination', [DestinationController::class, 'index'])->name('destination.index');
-Route::get('destination/create', [DestinationController::class,'create'])->name('destination.create');
-Route::post('destination', [DestinationController::class, 'store'])->name('destination.store');
-Route::get('destinasi2/{id}', [DestinationController::class, 'show'])->name('destinasi2');
-Route::delete('destinasi2/{id}', [DestinationController::class, 'delete'])->name('destinasi2.delete');
-Route::get('destinasi2/{id}/edit', [DestinationController::class, 'edit'])->name('destinasi2.edit');
-Route::put('destinasi2/{id}/update', [DestinationController::class, 'update'])->name('destinasi2.update');
+Route::prefix('destination')->name('destination.')->group(function () {
+    Route::get('/', [DestinationController::class, 'index'])->name('index');
+    Route::get('/create', [DestinationController::class, 'create'])->name('create');
+    Route::post('/', [DestinationController::class, 'store'])->name('store');
+    Route::get('/{id}', [DestinationController::class, 'show'])->name('show');
+    Route::delete('/{id}', [DestinationController::class, 'delete'])->name('delete');
+    Route::get('/{id}/edit', [DestinationController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [DestinationController::class, 'update'])->name('update');
+});
 
-
-Route::get('user', [UserController::class, 'index'])->name('user.index');
-Route::get('user/create', [UserController::class,'create'])->name('user.create');
-Route::post('user', [UserController::class, 'store'])->name('user.store');
-Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
-Route::delete('user/{id}', [UserController::class, 'delete'])->name('user.delete');
-Route::get('user/{id}/edit', [UserController::class,'edit'])->name('user.edit');
-Route::put('user/{id}/update', [UserController::class, 'update'])->name('user.update');
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::get('/{id}', [UserController::class, 'show'])->name('show');
+    Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
+    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [UserController::class, 'update'])->name('update');
+});

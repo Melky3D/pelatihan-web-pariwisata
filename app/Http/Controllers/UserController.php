@@ -14,26 +14,34 @@ class UserController extends Controller
         } else {
             $users = User::paginate(5);
         }
-        return view('pages.indexUser', compact('users'));
+        return view('pages.users.indexUser', compact('users'));
     }
 
     public function show($id)
     {
         $detailUser = User::find($id);
-        return view('pages.detailUser', compact('detailUser'));
+        return view('pages.users.detailUser', compact('detailUser'));
     }
 
     public function create()
     {
-        return view('pages.createUser');
+        return view('pages.users.createUser');
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+        ]);
 
-        User::create($request->all());
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
 
-        return redirect('user')->with('success', 'User created successfully.');
+        User::create($data);
+
+        return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
 
     public function delete($id)
@@ -41,27 +49,38 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return redirect('/user')->with('success', 'User deleted successfully.');
+            return redirect()->route('user.index')->with('success', 'User deleted successfully.');
         }else {
-            return redirect('/user')->with('error', 'User not found.');
+            return redirect()->route('user.index')->with('error', 'User not found.');
         }
 
     }
 
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('pages.updateUser', compact('user'));
+        $user = User::find($id);  
+        return view('pages.users.updateUser', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
         $user = User::find($id);
         if ($user) {
-            $user->update($request->all());
-            return redirect('/user')->with('success', 'User updated successfully.');
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'nullable|min:8',
+            ]);
+
+            $data = $request->only(['name', 'email']);
+            if ($request->filled('password')) {
+                $data['password'] = bcrypt($request->password);
+            }
+
+            $user->update($data);
+            return redirect()->route('user.index')->with('success', 'User updated successfully.');
         } else {
-            return redirect('/user')->with('error', 'User not found.');
+            return redirect()->route('user.index')->with('error', 'User not found.');
         }
     }
 }
