@@ -172,7 +172,7 @@
         </div>
       @endif
 
-      <form action="{{ route('destinasi2.update', $destinasi->id) }}" method="POST">
+      <form action="{{ route('destination.update', $destinasi->id) }}" method="POST">
         @csrf
 
         @method('PUT')

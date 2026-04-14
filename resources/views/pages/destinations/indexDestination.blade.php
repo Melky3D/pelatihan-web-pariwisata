@@ -362,15 +362,15 @@
                 <div class="action-buttons">
 
 
-                  <a href="{{ route('destinasi2', $destination->id) }}" class="btn-view">
+                  <a href="{{ route('destination.show', $destination->id) }}" class="btn-view">
                     <i class="bi bi-eye"></i>
                   </a>
 
-                  <a href="{{ route('destinasi2.edit', $destination->id) }}" class="btn-update">
+                  <a href="{{ route('destination.edit', $destination->id) }}" class="btn-update">
                     <i class="bi bi-pencil"></i>
                   </a>
 
-                  <form action="{{ route('destinasi2.delete', $destination->id) }}" method="POST" style="display: inline;">
+                  <form action="{{ route('destination.delete', $destination->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this destination?')">

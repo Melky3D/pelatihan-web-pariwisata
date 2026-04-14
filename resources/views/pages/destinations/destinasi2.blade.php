@@ -147,7 +147,7 @@
   }
 
   .btn-back {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #762c80 0%, #764ba2 100%);
     border: none;
     color: white;
     padding: 12px 30px;
@@ -244,6 +244,28 @@
               <div class="info-value">{{ $destinasi->working_hour }}</div>
             </div>
           </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="bi bi-calendar-plus"></i>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Created At</div>
+              <div class="info-value">{{ $destinasi->created_at }}</div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="bi bi-calendar-week"></i>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Updated At</div>
+              <div class="info-value">{{ $destinasi->updated_at }}</div>
+            </div>
+          </div>
+
+
         </div>
       </div>
 
