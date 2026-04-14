@@ -365,7 +365,7 @@
                     <i class="bi bi-pencil"></i>
                   </a>
 
-                  <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display: inline;">
+                  <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this user?')">

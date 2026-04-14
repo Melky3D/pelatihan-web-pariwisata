@@ -305,7 +305,7 @@
 <!-- Hero Section -->
 <section class="destination-hero text-white text-center">
   <div class="container">
-    <h1>Destinasi Wisata 🌴</h1>
+    <h1>Tempat Attraksi</h1>
     <p>Temukan tempat-tempat menakjubkan untuk dikunjungi</p>
   </div>
 </section>
@@ -314,16 +314,16 @@
 <section class="pb-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="section-title mb-0">Semua Destinasi</h2>
+      <h2 class="section-title mb-0">Semua Attraksi</h2>
 
-      <form action="/destination" method="GET" class="search-form d-flex align-items-center gap-2">
-        <input type="text" name="search" class="form-control" placeholder="Cari destinasi..." value="{{ request('search') }}">
+      <form action="/attraction" method="GET" class="search-form d-flex align-items-center gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Cari attraksi..." value="{{ request('search') }}">
         <i class="bi bi-search search-icon"></i>
         <button type="submit" class="btn">Cari</button>
       </form>
 
-      <a href="/destination/create" class="btn-add ms-3">
-        <i class="bi bi-plus-circle"></i> Tambah Destinasi
+      <a href="/attraction/create" class="btn-add ms-3">
+        <i class="bi bi-plus-circle"></i> Tambah Attraksi
       </a>
     </div>
 
@@ -341,36 +341,28 @@
               <th scope="col">ID</th>
               <th scope="col">Nama</th>
               <th scope="col">Deskripsi</th>
-              <th scope="col">Lokasi</th>
-              <th scope="col">Hari Buka</th>
-              <th scope="col">Jam Buka</th>
-              <th scope="col">Harga Tiket</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
-            @forelse ($destinations as $destination)
+            @forelse ($attractions as $attraction)
             <tr>
-              <th>{{ $destination->id }}</th>
-              <td><strong>{{ $destination->name }}</strong></td>
-              <td>{{ Str::limit($destination->description, 50) }}</td>
-              <td><i class="bi bi-geo-alt-fill text-primary"></i> {{ $destination->location }}</td>
-              <td>{{ $destination->working_day }}</td>
-              <td>{{ $destination->working_hour }}</td>
-              <td><strong class="text-primary">Rp {{ number_format($destination->ticket_price, 0, ',', '.') }}</strong></td>
+              <th>{{ $attraction->id }}</th>
+              <td><strong>{{ $attraction->name }}</strong></td>
+              <td>{{ Str::limit($attraction->description, 255) }}</td>
               <td>
                 <div class="action-buttons">
 
 
-                  <a href="{{ route('destination.show', $destination->id) }}" class="btn-view">
+                  <a href="{{ route('attraction.show', $attraction->id) }}" class="btn-view">
                     <i class="bi bi-eye"></i>
                   </a>
 
-                  <a href="{{ route('destination.edit', $destination->id) }}" class="btn-update">
+                  <a href="{{ route('attraction.edit', $attraction->id) }}" class="btn-update">
                     <i class="bi bi-pencil"></i>
                   </a>
 
-                  <form action="{{ route('destination.destroy', $destination->id) }}" method="POST" style="display: inline;">
+                  <form action="{{ route('attraction.destroy', $attraction->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this destination?')">
@@ -385,8 +377,8 @@
               <td colspan="8">
                 <div class="empty-state">
                   <i class="bi bi-inbox"></i>
-                  <h3>Belum Ada Destinasi</h3>
-                  <p>Klik tombol "Tambah Destinasi" untuk menambahkan destinasi baru</p>
+                  <h3>Belum Ada Attraksi</h3>
+                  <p>Klik tombol "Tambah Attraksi" untuk menambahkan attraksi baru</p>
                 </div>
               </td>
             </tr>
@@ -397,7 +389,7 @@
     </div>
 
     <div class="pagination-wrapper">
-      {{ $destinations->appends(['search' => request('search')])->links('pagination::bootstrap-5') }}
+      {{ $attractions->appends(['search' => request('search')])->links('pagination::bootstrap-5') }}
     </div>
   </div>
 </section>

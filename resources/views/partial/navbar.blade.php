@@ -81,6 +81,10 @@
           <a href="/user" class="nav-link text-white">Tabel User</a>
         </li>
 
+        <li class="nav-item">
+          <a href="/attraction" class="nav-link text-white">Tabel Attraksi</a>
+        </li>
+
       </ul>
 
       <!-- SEARCH -->

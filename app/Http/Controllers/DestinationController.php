@@ -36,7 +36,7 @@ class DestinationController extends Controller
         return redirect()->route('destination.index')->with('success', 'Destination created successfully.');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $destinasi = Destination::find($id);
         if ($destinasi) {
