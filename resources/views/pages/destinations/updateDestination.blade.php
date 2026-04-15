@@ -3,19 +3,32 @@
 @section('content')
 
 <style>
-  .form-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 60px 0;
+  .destination-hero {
+    background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80') center/cover no-repeat;
+    position: relative;
+    padding: 100px 0;
     margin-bottom: 40px;
   }
 
-  .form-hero h1 {
+  .destination-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.658);
+  }
+
+  .destination-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .destination-hero h1 {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 10px;
   }
 
-  .form-hero p {
+  .destination-hero p {
     font-size: 1.2rem;
     opacity: 0.9;
   }
@@ -148,7 +161,7 @@
 </style>
 
 <!-- Hero Section -->
-<section class="form-hero text-white">
+<section class="destination-hero text-white">
   <div class="container">
     <h1>✏️ Edit Destinasi</h1>
     <p>Perbarui informasi destinasi wisata</p>

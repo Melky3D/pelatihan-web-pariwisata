@@ -30,8 +30,17 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
+        
+         $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'location' => 'required|string|max:255',
+            'working_day'=> 'required|string|max:255',
+            'working_hour'=> 'required|string|max:255',
+            'ticket_price'=> 'required|numeric|min:0',
+        ]);
 
-        Destination::create($request->all());
+        \App\Models\Destination::create($validated);
 
         return redirect()->route('destination.index')->with('success', 'Destination created successfully.');
     }
@@ -56,6 +65,16 @@ class DestinationController extends Controller
 
     public function update(Request $request, $id)
     {
+         $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'location' => 'required|string|max:255',
+            'working_day'=> 'required|string|max:255',
+            'working_hour'=> 'required|string|max:255',
+            'ticket_price'=> 'required|numeric|min:0',
+        ]);
+        \App\Models\Destination::find($id)->update($validated);
+
         $destinasi = Destination::find($id);
         if ($destinasi) {
             $destinasi->update($request->all());

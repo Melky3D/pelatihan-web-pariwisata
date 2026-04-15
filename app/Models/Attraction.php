@@ -10,6 +10,13 @@ class Attraction extends Model
 
     protected $fillable = [
         'name',
+        'destination_id',
         'description',
     ];
+
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
+    }
+
 }

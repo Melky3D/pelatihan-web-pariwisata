@@ -54,7 +54,7 @@ class DestinationSeeder extends Seeder
             'ticket_price' => 10000,
         ]);
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
         Destination::create([
             'name' => fake('id_ID')->name(),
             'description' => fake('id_ID')->paragraph(),

@@ -203,6 +203,17 @@
         <div class="col-12">
           <div class="info-item">
             <div class="info-icon">
+              <i class="bi bi-building"></i>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Destinasi</div>
+              <div class="info-value">{{ $attraction->destination->name }}</div>
+            </div>  
+          </div>
+
+     
+          <div class="info-item">
+            <div class="info-icon">
               <i class="bi bi-card-text"></i>
             </div>
             <div class="info-content">

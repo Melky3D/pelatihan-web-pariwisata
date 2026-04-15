@@ -3,22 +3,35 @@
 @section('content')
 
 <style>
-  .form-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 60px 0;
+  .destination-hero {
+    background: url('https://awsimages.detik.net.id/community/media/visual/2021/11/08/piaynemo-dan-telaga-bintang-raja-ampat-5_169.jpeg?w=1200') center/cover no-repeat;
+    position: relative;
+    padding: 100px 0;
     margin-bottom: 40px;
   }
 
-  .form-hero h1 {
+  .destination-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.658);
+  }
+
+  .destination-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .destination-hero h1 {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 10px;
   }
 
-  .form-hero p {
+  .destination-hero p {
     font-size: 1.2rem;
     opacity: 0.9;
-  }
+  }.
 
   .form-card {
     background: white;
@@ -148,7 +161,7 @@
 </style>
 
 <!-- Hero Section -->
-<section class="form-hero text-white">
+<section class="destination-hero text-white">
   <div class="container">
     <h1>✏️ Edit Attraksi</h1>
     <p>Perbarui informasi attraksi wisata</p>
@@ -176,6 +189,20 @@
         @csrf
 
         @method('PUT')
+
+        <div class="form-group">
+          <label for="destination_id">
+            <i class="bi bi-geo-alt-fill"></i> Destinasi
+          </label>
+          <select name="destination_id" id="destination_id" class="form-control" required>
+            <option value="">Pilih Destinasi</option>
+            @foreach($destinations as $destination)
+              <option value="{{ $destination->id }}" {{ $attraction->destination_id == $destination->id ? 'selected' : '' }}>
+                {{ $destination->name }}
+              </option>
+            @endforeach
+          </select>
+          <div class="input-hint">Pilih destinasi tempat attraksi ini berada</div>  
 
         <div class="form-group">
           <label for="name">

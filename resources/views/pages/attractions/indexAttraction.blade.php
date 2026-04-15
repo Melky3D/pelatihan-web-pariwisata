@@ -4,7 +4,7 @@
 
 <style>
   .destination-hero {
-    background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80') center/cover no-repeat;
+    background: url('https://awsimages.detik.net.id/community/media/visual/2021/11/08/piaynemo-dan-telaga-bintang-raja-ampat-5_169.jpeg?w=1200') center/cover no-repeat;
     position: relative;
     padding: 100px 0;
     margin-bottom: 40px;
