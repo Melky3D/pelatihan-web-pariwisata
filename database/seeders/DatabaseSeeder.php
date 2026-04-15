@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(DestinationSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(AttractionSeeder::class);
     }
 
 }
