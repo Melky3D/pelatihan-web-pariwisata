@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
@@ -30,7 +31,6 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
-        
          $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
@@ -38,7 +38,12 @@ class DestinationController extends Controller
             'working_day'=> 'required|string|max:255',
             'working_hour'=> 'required|string|max:255',
             'ticket_price'=> 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048'
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('destinations', 'public');
+        }
 
         Destination::create($validated);
 
@@ -72,15 +77,23 @@ class DestinationController extends Controller
             'working_day'=> 'required|string|max:255',
             'working_hour'=> 'required|string|max:255',
             'ticket_price'=> 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048'
         ]);
-        Destination::find($id)->update($validated);
 
         $destinasi = Destination::find($id);
-        if ($destinasi) {
-            $destinasi->update($request->all());
-            return redirect()->route('destination.index')->with('success', 'Destination updated successfully.');
-        } else {
+        if (! $destinasi) {
             return redirect()->route('destination.index')->with('error', 'Destination not found.');
         }
+
+        if ($request->hasFile('image')) {
+            if ($destinasi->image && Storage::disk('public')->exists($destinasi->image)) {
+                Storage::disk('public')->delete($destinasi->image);
+            }
+            $validated['image'] = $request->file('image')->store('destinations', 'public');
+        }
+
+        $destinasi->update($validated);
+
+        return redirect()->route('destination.index')->with('success', 'Destination updated successfully.');
     }
 }

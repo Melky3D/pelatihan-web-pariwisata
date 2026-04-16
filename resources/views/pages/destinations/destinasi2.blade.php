@@ -61,6 +61,39 @@
     display: inline-block;
   }
 
+  .detail-image {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    background: #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .detail-image img {
+    max-width: 100%;
+    max-height: 520px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .detail-placeholder {
+    width: 100%;
+    min-height: 320px;
+    border-radius: 20px;
+    background: #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
   .info-item {
     display: flex;
     align-items: flex-start;
@@ -194,6 +227,16 @@
   <div class="container">
     <div class="detail-card">
       <h2><i class="bi bi-info-circle-fill text-primary"></i> Informasi Destinasi</h2>
+
+      @if ($destinasi->image)
+        <div class="detail-image">
+          <img src="{{ asset('storage/' . $destinasi->image) }}" alt="Gambar {{ $destinasi->name }}">
+        </div>
+      @else
+        <div class="detail-placeholder">
+          Tidak ada gambar destinasi tersedia.
+        </div>
+      @endif
 
       <div class="row">
         <div class="col-12">

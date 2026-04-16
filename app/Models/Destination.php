@@ -15,6 +15,7 @@ class Destination extends Model
         'working_day',
         'working_hour',
         'ticket_price',
+        'image',
     ];
 
     public function attractions()

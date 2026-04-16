@@ -185,7 +185,7 @@
         </div>
       @endif
 
-      <form action="{{ route('destination.update', $destinasi->id) }}" method="POST">
+      <form action="{{ route('destination.update', $destinasi->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         @method('PUT')
@@ -288,6 +288,19 @@
             required
           >
           <div class="input-hint">Harga tiket masuk per orang (dalam Rupiah)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="image">
+            <i class="bi bi-image-fill"></i> Gambar Destinasi
+          </label>
+          <input 
+            type="file" 
+            name="image" 
+            id="image" 
+            class="form-control"
+          >
+          <div class="input-hint">Unggah gambar destinasi (opsional, format: jpeg, png, jpg, svg, max: 2MB)</div>
         </div>
 
         <div class="form-actions">

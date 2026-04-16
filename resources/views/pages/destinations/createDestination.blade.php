@@ -185,7 +185,7 @@
         </div>
       @endif
 
-      <form action="/destination" method="POST">
+      <form action="/destination" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
@@ -282,6 +282,21 @@
           >
           <div class="input-hint">Harga tiket masuk per orang (dalam Rupiah)</div>
         </div>
+
+        <div class="form-group">
+          <label for="image">
+            <i class="bi bi-image-fill"></i> Gambar Destinasi
+          </label>
+          <input 
+            type="file" 
+            name="image" 
+            id="image" 
+            class="form-control"
+            accept="image/*"
+          >
+          <div class="input-hint">Unggah gambar destinasi (opsional, maksimal 2MB)</div>
+        </div>
+
 
         <div class="form-actions">
           <a href="{{ route('destination.index') }}" class="btn-back">
