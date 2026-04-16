@@ -4,7 +4,7 @@
 
 <style>
   .detail-hero {
-    background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80') center/cover no-repeat;
+   background: url('https://wallpapershome.com/images/pages/ico_h/572.jpg') center/cover no-repeat;
     position: relative;
     padding: 100px 0;
     margin-bottom: 40px;
@@ -182,9 +182,8 @@
     <a href="{{ url()->previous() }}" class="btn-back text-white mb-3">
       <i class="bi bi-arrow-left"></i> Kembali
     </a>
-    <h1>{{ $destinasi->name }}</h1>
+    <h1>{{ $reviews->name }}</h1>
     <p class="subtitle">
-      <i class="bi bi-geo-alt-fill"></i> {{ $destinasi->location }}
     </p>
   </div>
 </section>
@@ -193,50 +192,28 @@
 <section class="pb-5">
   <div class="container">
     <div class="detail-card">
-      <h2><i class="bi bi-info-circle-fill text-primary"></i> Informasi Destinasi</h2>
+      <h2><i class="bi bi-info-circle-fill text-primary"></i> Informasi Review</h2>
 
       <div class="row">
         <div class="col-12">
           <div class="info-item">
             <div class="info-icon">
+              <i class="bi bi-building"></i>
+            </div>
+            <div class="info-content">
+              <div class="info-label">Reviewer</div>
+              <div class="info-value">{{ $reviews->attraction->name }}</div>
+            </div>  
+          </div>
+
+     
+          <div class="info-item">
+            <div class="info-icon">
               <i class="bi bi-card-text"></i>
             </div>
             <div class="info-content">
-              <div class="info-label">Deskripsi</div>
-              <div class="info-value">{{ $destinasi->description }}</div>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bi bi-geo-alt"></i>
-            </div>
-            <div class="info-content">
-              <div class="info-label">Lokasi</div>
-              <div class="info-value">{{ $destinasi->location }}</div>
-              <span class="badge-info">
-                <i class="bi bi-check-circle"></i> Terverifikasi
-              </span>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bi bi-calendar-week"></i>
-            </div>
-            <div class="info-content">
-              <div class="info-label">Hari Buka</div>
-              <div class="info-value">{{ $destinasi->working_day }}</div>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bi bi-clock"></i>
-            </div>
-            <div class="info-content">
-              <div class="info-label">Jam Buka</div>
-              <div class="info-value">{{ $destinasi->working_hour }}</div>
+              <div class="info-label">Comment</div>
+              <div class="info-value">{{ $reviews->comment }}</div>
             </div>
           </div>
 
@@ -246,7 +223,7 @@
             </div>
             <div class="info-content">
               <div class="info-label">Created At</div>
-              <div class="info-value">{{ $destinasi->created_at }}</div>
+              <div class="info-value">{{ $reviews->created_at }}</div>
             </div>
           </div>
 
@@ -256,7 +233,7 @@
             </div>
             <div class="info-content">
               <div class="info-label">Updated At</div>
-              <div class="info-value">{{ $destinasi->updated_at }}</div>
+              <div class="info-value">{{ $reviews->updated_at }}</div>
             </div>
           </div>
 
@@ -264,12 +241,6 @@
         </div>
       </div>
 
-      <!-- Price Section -->
-      <div class="price-highlight">
-        <div class="price-label">Harga Tiket Masuk</div>
-        <div class="price-amount">Rp {{ number_format($destinasi->ticket_price, 0, ',', '.') }}</div>
-        <div class="price-note">Harga per orang</div>
-      </div>
     </div>
   </div>
 </section>

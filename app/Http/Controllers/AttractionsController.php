@@ -38,7 +38,7 @@ class AttractionsController extends Controller
             'description' => 'nullable|string|max:255',
         ]);
 
-        \App\Models\Attraction::create($validated);
+        Attraction::create($validated);
 
         return redirect()->route('attraction.index')->with('success', 'Attraction created successfully.');
     }
@@ -70,7 +70,7 @@ class AttractionsController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
         ]);
-        \App\Models\Attraction::find($id)->update($validated);
+        Attraction::find($id)->update($validated);
 
         $attraction = Attraction::find($id);
         if ($attraction) {

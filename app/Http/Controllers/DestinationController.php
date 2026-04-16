@@ -40,7 +40,7 @@ class DestinationController extends Controller
             'ticket_price'=> 'required|numeric|min:0',
         ]);
 
-        \App\Models\Destination::create($validated);
+        Destination::create($validated);
 
         return redirect()->route('destination.index')->with('success', 'Destination created successfully.');
     }
@@ -73,7 +73,7 @@ class DestinationController extends Controller
             'working_hour'=> 'required|string|max:255',
             'ticket_price'=> 'required|numeric|min:0',
         ]);
-        \App\Models\Destination::find($id)->update($validated);
+        Destination::find($id)->update($validated);
 
         $destinasi = Destination::find($id);
         if ($destinasi) {

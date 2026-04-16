@@ -4,22 +4,17 @@
 
 <style>
   .detail-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 60px 0;
-    margin-bottom: 40px;
+    background: url('https://static.vecteezy.com/system/resources/thumbnails/056/635/668/small/black-office-with-computer-desk-and-plants-photo.jpeg') center/cover no-repeat;
     position: relative;
-    overflow: hidden;
+    padding: 100px 0;
+    margin-bottom: 40px;
   }
 
   .detail-hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 300px;
-    height: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.397);
   }
 
   .detail-hero::after {

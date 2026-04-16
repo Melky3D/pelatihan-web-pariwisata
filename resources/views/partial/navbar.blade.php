@@ -69,20 +69,26 @@
           <a href="/about" class="nav-link text-white">About</a>
         </li>
 
+         <!--
         <li class="nav-item">
           <a href="/destinasi" class="nav-link text-white">Destination</a>
         </li>
+      -->
 
         <li class="nav-item">
-          <a href="/destination" class="nav-link text-white">Tabel Destination</a>
+          <a href="/destination" class="nav-link text-white">Destination</a>
         </li>
 
         <li class="nav-item">
-          <a href="/user" class="nav-link text-white">Tabel User</a>
+          <a href="/user" class="nav-link text-white">User</a>
         </li>
 
         <li class="nav-item">
-          <a href="/attraction" class="nav-link text-white">Tabel Attraksi</a>
+          <a href="/attraction" class="nav-link text-white">Attraksi</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/review" class="nav-link text-white">Reviews</a>
         </li>
 
       </ul>

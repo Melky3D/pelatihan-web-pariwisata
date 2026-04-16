@@ -4,7 +4,7 @@
 
 <style>
   .destination-hero {
-    background: url('https://awsimages.detik.net.id/community/media/visual/2021/11/08/piaynemo-dan-telaga-bintang-raja-ampat-5_169.jpeg?w=1200') center/cover no-repeat;
+    background: url('https://wallpapershome.com/images/pages/ico_h/572.jpg') center/cover no-repeat;
     position: relative;
     padding: 100px 0;
     margin-bottom: 40px;
@@ -305,7 +305,7 @@
 <!-- Hero Section -->
 <section class="destination-hero text-white text-center">
   <div class="container">
-    <h1>Tempat Attraksi</h1>
+    <h1>Tempat Review</h1>
     <p>Temukan tempat-tempat menakjubkan untuk dikunjungi</p>
   </div>
 </section>
@@ -314,16 +314,16 @@
 <section class="pb-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="section-title mb-0">Semua Attraksi</h2>
+      <h2 class="section-title mb-0">Semua Review</h2>
 
-      <form action="/attraction" method="GET" class="search-form d-flex align-items-center gap-2">
-        <input type="text" name="search" class="form-control" placeholder="Cari attraksi..." value="{{ request('search') }}">
+      <form action="/review" method="GET" class="search-form d-flex align-items-center gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Cari review..." value="{{ request('search') }}">
         <i class="bi bi-search search-icon"></i>
         <button type="submit" class="btn">Cari</button>
       </form>
 
-      <a href="/attraction/create" class="btn-add ms-3">
-        <i class="bi bi-plus-circle"></i> Tambah Attraksi
+      <a href="/review/create" class="btn-add ms-3">
+        <i class="bi bi-plus-circle"></i> Tambah Review
       </a>
     </div>
 
@@ -339,35 +339,35 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Nama Destinasi</th>
               <th scope="col">Nama Atraksi</th>
+              <th scope="col">Nama Reviewer</th>
               <th scope="col">Deskripsi</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
-            @forelse ($attractions as $attraction)
+            @forelse ($reviews as $r)
             <tr>
-              <th>{{ $attraction->id }}</th>
-              <td>{{ $attraction->destination->name }}</td>
-              <td><strong>{{ $attraction->name }}</strong></td>
-              <td>{{ Str::limit($attraction->description, 255) }}</td>
+              <th>{{ $r->id }}</th>
+              <td>{{ $r->attraction->name }}</td>
+              <td><strong>{{ $r->name }}</strong></td>
+              <td>{{ Str::limit($r->comment, 255) }}</td>
               <td>
                 <div class="action-buttons">
 
 
-                  <a href="{{ route('attraction.show', $attraction->id) }}" class="btn-view">
+                  <a href="{{ route('review.show', $r->id) }}" class="btn-view">
                     <i class="bi bi-eye"></i>
                   </a>
 
-                  <a href="{{ route('attraction.edit', $attraction->id) }}" class="btn-update">
+                  <a href="{{ route('review.edit', $r->id) }}" class="btn-update">
                     <i class="bi bi-pencil"></i>
                   </a>
 
-                  <form action="{{ route('attraction.destroy', $attraction->id) }}" method="POST" style="display: inline;">
+                  <form action="{{ route('review.destroy', $r->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this destination?')">
+                    <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this review?')">
                       <i class="bi bi-trash"></i>
                     </button>
                   </form>
@@ -379,8 +379,8 @@
               <td colspan="8">
                 <div class="empty-state">
                   <i class="bi bi-inbox"></i>
-                  <h3>Belum Ada Attraksi</h3>
-                  <p>Klik tombol "Tambah Attraksi" untuk menambahkan attraksi baru</p>
+                  <h3>Belum Ada Review</h3>
+                  <p>Klik tombol "Tambah Review" untuk menambahkan review baru</p>
                 </div>
               </td>
             </tr>
@@ -391,7 +391,7 @@
     </div>
 
     <div class="pagination-wrapper">
-      {{ $attractions->appends(['search' => request('search')])->links('pagination::bootstrap-5') }}
+      {{ $reviews->appends(['search' => request('search')])->links('pagination::bootstrap-5') }}
     </div>
   </div>
 </section>

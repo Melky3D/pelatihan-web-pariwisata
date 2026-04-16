@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttractionsController;
+use App\Http\Controllers\ReviewController;
 
 
 Route::get('/', function () {
@@ -46,3 +47,4 @@ Route::get('destinasi', function () {
 Route::resource('destination', DestinationController::class);
 Route::resource('user', UserController::class);
 Route::resource('attraction', AttractionsController::class);
+Route::resource('review', ReviewController::class);
