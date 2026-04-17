@@ -299,6 +299,7 @@
             name="image" 
             id="image" 
             class="form-control"
+            value="{{ old('image') }}"
           >
           <div class="input-hint">Unggah gambar destinasi (opsional, format: jpeg, png, jpg, svg, max: 2MB)</div>
         </div>

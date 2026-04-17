@@ -101,7 +101,10 @@
       <!-- BUTTON -->
       <div class="d-flex gap-2">
         <button class="btn btn-outline-light btn-modern">Login</button>
-        <button class="btn btn-primary btn-modern">Sign Up</button>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-primary btn-modern">Logout</button>
+          </form>
       </div>
     </div>
 
